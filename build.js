@@ -24,7 +24,7 @@ spawnSync('sh', [
   cwd: 'FFmpeg',
   env: {
     ...vsEnvs,
-    PATH: `C:\\msys64\\usr\\bin;${vsEnvs.PATH}`
+    Path: `C:\\msys64\\usr\\bin;${vsEnvs.Path}`
   }
 })
 
