@@ -1,5 +1,5 @@
-const { execSync } = require('child_process')
-
+const { execSync, spawnSync } = require('child_process')
+const fs = require('fs')
 
 // setup vs
 fs.writeFileSync('temp.bat', `call "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsall.bat" amd64\nset`)
