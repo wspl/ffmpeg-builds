@@ -27,3 +27,5 @@ spawnSync('sh', [
     PATH: `C:\\msys64\\usr\\bin;${vsEnvs.PATH}`
   }
 })
+
+console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
