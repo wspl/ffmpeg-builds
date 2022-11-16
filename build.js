@@ -7,6 +7,7 @@ const sets = spawnSync('temp.bat', {
   shell: true
 }).stdout.toString()
 fs.rmSync('temp.bat')
+console.log(sets)
 const vsEnvs = Object.fromEntries(sets.split('\n').slice(5).map(line => line.trim().split('=')).filter(t => t.length > 1))
 
 execSync('git clone https://github.com/FFmpeg/FFmpeg.git', {
