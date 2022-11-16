@@ -14,7 +14,8 @@ execSync('git clone https://github.com/FFmpeg/FFmpeg.git', {
 })
 
 spawnSync('sh', [
-  './configure'
+  './configure',
+  '--toolchain=msvc'
 ], {
   stdio: 'inherit',
   cwd: 'FFmpeg',
