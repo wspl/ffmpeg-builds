@@ -1,6 +1,8 @@
 const { execSync, spawnSync } = require('child_process')
 const fs = require('fs')
 
+console.log(fs.readdirSync('C:\\msys64\\usr\\bin'))
+
 // setup vs
 fs.writeFileSync('temp.bat', `call "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsall.bat" amd64\nset`)
 const sets = spawnSync('temp.bat', {
