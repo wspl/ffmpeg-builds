@@ -5,6 +5,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: build
-        run:
-          - ls -al
-          - node ./build.js
+        run: |
+          ls -al
+          node ./build.js
