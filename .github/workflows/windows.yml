@@ -9,6 +9,8 @@ jobs:
         with:
           update: true
           install: >-
+            coreutils
+            gawk
             make
             diffutils
             yasm
