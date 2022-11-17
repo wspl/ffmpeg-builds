@@ -29,4 +29,4 @@ execSync('make', {
   stdio: 'inherit'
 })
 
-// console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
+console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
