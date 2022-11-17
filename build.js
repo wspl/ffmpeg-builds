@@ -41,4 +41,13 @@ execSync(`${msysBinDir}\\make.exe`, {
   }
 })
 
+execSync(`${msysBinDir}\\make.exe install`, {
+  stdio: 'inherit',
+  cwd: 'FFmpeg',
+  env: {
+    ...vsEnvs,
+    Path: `${msysBinDir};${vsEnvs.Path}`
+  }
+})
+
 console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
