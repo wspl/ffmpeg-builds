@@ -29,7 +29,8 @@ spawnSync('sh', [
 })
 
 execSync('make', {
-  stdio: 'inherit'
+  stdio: 'inherit',
+  cwd: 'FFmpeg',
 })
 
 console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
