@@ -5,6 +5,13 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ilammy/setup-nasm@v1
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            make
+            diffutils
+            yasm
+            nasm
       - name: build
         run: node ./build.js

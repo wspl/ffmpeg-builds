@@ -22,10 +22,7 @@ spawnSync('sh', [
 ], {
   stdio: 'inherit',
   cwd: 'FFmpeg',
-  env: {
-    ...vsEnvs,
-    Path: `C:\\msys64\\usr\\bin;${vsEnvs.Path}`
-  }
+  env: vsEnvs
 })
 
 execSync('make', {
