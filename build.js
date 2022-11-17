@@ -34,6 +34,10 @@ spawnSync('sh', [
 execSync(`${msysBinDir}\\make.exe`, {
   stdio: 'inherit',
   cwd: 'FFmpeg',
+  env: {
+    ...vsEnvs,
+    Path: `${msysBinDir};${vsEnvs.Path}`
+  }
 })
 
 console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
