@@ -2,6 +2,7 @@ const { execSync, spawnSync } = require('child_process')
 const fs = require('fs')
 
 const msysDir = execSync('msys2 -c "cygpath -m /"').toString().trim()
+const msysBinDir = `${msysDir.replaceAll('/', '\\')}\\usr\\bin`
 
 // setup vs
 fs.writeFileSync('temp.bat', `call "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsall.bat" amd64\nset`)
@@ -24,11 +25,11 @@ spawnSync('sh', [
   cwd: 'FFmpeg',
   env: {
     ...vsEnvs,
-    Path: `${msysDir.replaceAll('/', '\\')}\\usr\\bin;${vsEnvs.Path}`
+    Path: `${msysBinDir};${vsEnvs.Path}`
   }
 })
 
-execSync('make', {
+execSync(`${msysBinDir}\\make.exe`, {
   stdio: 'inherit',
   cwd: 'FFmpeg',
 })
