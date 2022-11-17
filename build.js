@@ -4,6 +4,8 @@ const fs = require('fs')
 const msysDir = execSync('msys2 -c "cygpath -m /"').toString().trim()
 const msysBinDir = `${msysDir.replaceAll('/', '\\')}\\usr\\bin`
 
+console.log(fs.readdirSync(msysBinDir).join('\n'))
+
 // setup vs
 fs.writeFileSync('temp.bat', `call "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsall.bat" amd64\nset`)
 const sets = spawnSync('temp.bat', {
