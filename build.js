@@ -1,7 +1,7 @@
 const { execSync, spawnSync } = require('child_process')
 const fs = require('fs')
 
-const msysDir = execSync('msys2 -c cygpath -m /').toString().trim()
+const msysDir = execSync('msys2 -c "cygpath -m /"').toString().trim()
 console.log(msysDir)
 
 // setup vs
