@@ -4,7 +4,13 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Project
+        uses: actions/checkout@v3
+      - name: Checkout FFmpeg
+        uses: actions/checkout@v3
+        with:
+          repository: FFmpeg/FFmpeg
+          path: FFmpeg
       - uses: msys2/setup-msys2@v2
         with:
           update: true
