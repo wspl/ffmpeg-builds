@@ -36,7 +36,7 @@ function buildWindows(arch) {
       `--arch=${arch}`,
       '--cc=clang',
       `--extra-cflags="--target=${llvmArch}-pc-windows-msvc"`,
-      `--extra-ldflags="--target=${llvmArch}-pc-windows-msvc"`,
+      `--extra-ldflags="--target=${llvmArch}-pc-windows-msvc -NODEFAULTLIB:libcmt"`,
     ], options)
     execSync(`make -j16`, options)
     execSync(`make install`, options)
