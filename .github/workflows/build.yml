@@ -1,7 +1,7 @@
 name: Build
 on: [push]
 jobs:
-  win32-i686:
+  win32-x86:
     runs-on: windows-2022
     steps:
       - name: Checkout Project
@@ -22,7 +22,7 @@ jobs:
             yasm
             nasm
       - name: build
-        run: node ./build.js win32 i686
+        run: node ./build.js win32 x86
       - uses: actions/upload-artifact@v3
         with:
           name: win32-x86

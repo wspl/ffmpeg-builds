@@ -26,6 +26,7 @@ function buildWindows(arch) {
   }
 
   try {
+    const llvmArch = arch === 'x86' ? 'i686' : arch
     spawnSync('sh', [
       './configure',
       // '--toolchain=msvc',
@@ -34,8 +35,8 @@ function buildWindows(arch) {
       '--enable-cross-compile',
       `--arch=${arch}`,
       '--cc=clang',
-      `--extra-cflags="--target=${arch}-pc-windows-msvc"`,
-      `--extra-ldflags="--target=${arch}-pc-windows-msvc"`,
+      `--extra-cflags="--target=${llvmArch}-pc-windows-msvc"`,
+      `--extra-ldflags="--target=${llvmArch}-pc-windows-msvc"`,
     ], options)
     execSync(`make -j16`, options)
     execSync(`make install`, options)
