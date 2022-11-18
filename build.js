@@ -39,19 +39,13 @@ function buildDarwin(arch) {
   const options = {
     stdio: 'inherit',
     cwd: 'FFmpeg',
-    env: {
-      ...process.env,
-      ARCH: arch
-    }
   }
   spawnSync('sh', [
     './configure',
     '--prefix=../output',
     '--enable-cross-compile',
     `--arch=${arch}`,
-    '--cc=clang',
-    `--extra-ldflags="-target ${arch}"`,
-    `--extra-cflags="-target ${arch}"`
+    `--cc="clang -arch ${arch}"`,
   ], options)
   // console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
   execSync(`make -j16`, options)
