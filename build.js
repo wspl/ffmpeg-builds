@@ -46,7 +46,7 @@ function buildDarwin(arch) {
     '--enable-cross-compile',
     `--arch=${arch}`,
     '--cc=clang',
-    `--extra-ldflags="-target ${arch}-apple-darwin"`
+    `--extra-ldflags="-target ${arch}-apple-darwin"`,
     `--extra-cflags="-target ${arch}-apple-darwin"`
   ], options)
   console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
