@@ -47,9 +47,9 @@ function buildDarwin(arch) {
     `--arch=${arch}`,
     `--cc="clang -arch ${arch}"`,
   ], options)
-  // console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
+  console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
   execSync(`make -j16`, options)
-  // console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
+  console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
   execSync(`make install`, options)
 }
 

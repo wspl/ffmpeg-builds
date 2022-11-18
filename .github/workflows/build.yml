@@ -64,7 +64,7 @@ jobs:
           repository: FFmpeg/FFmpeg
           path: FFmpeg
       - name: brew install
-        run: brew install automake fdk-aac git lame libass libtool libvorbis libvpx opus sdl shtool texi2html theora wget x264 x265 xvid nasm
+        run: brew install automake fdk-aac git lame libass libtool libvorbis libvpx opus sdl shtool texi2html theora wget x264 x265 xvid yasm
       - name: build
         run: node ./build.js darwin x86_64
       - uses: actions/upload-artifact@v3
@@ -82,7 +82,7 @@ jobs:
           repository: FFmpeg/FFmpeg
           path: FFmpeg
       - name: brew install
-        run: brew install automake fdk-aac git lame libass libtool libvorbis libvpx opus sdl shtool texi2html theora wget x264 x265 xvid nasm
+        run: brew install automake fdk-aac git lame libass libtool libvorbis libvpx opus sdl shtool texi2html theora wget x264 x265 xvid yasm
       - name: build
         run: node ./build.js darwin arm64
       - uses: actions/upload-artifact@v3
