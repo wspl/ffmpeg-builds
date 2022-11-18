@@ -40,20 +40,22 @@ function buildDarwin(arch) {
     stdio: 'inherit',
     cwd: 'FFmpeg',
   }
-  execSync([
-    'sh',
-    './configure',
-    '--prefix=../output',
-    '--enable-cross-compile',
-    `--arch=${arch}`,
-    '--cc=clang',
-    `--extra-cflags="--target=${arch}-apple-darwin"`,
-    `--extra-ldflags="--target=${arch}-apple-darwin"`,
-  ].join(' '), options)
-  console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
-  execSync(`make -j16`, options)
-  console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
-  execSync(`make install`, options)
+  try {
+    execSync([
+      'sh',
+      './configure',
+      '--prefix=../output',
+      '--enable-cross-compile',
+      `--arch=${arch}`,
+      '--cc=clang',
+      `--extra-cflags="--target=${arch}-apple-darwin"`,
+      `--extra-ldflags="--target=${arch}-apple-darwin"`,
+    ].join(' '), options)
+    execSync(`make -j16`, options)
+    execSync(`make install`, options)
+  } catch {
+    console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
+  }
 }
 
 const [,, platform, arch] = process.argv;
