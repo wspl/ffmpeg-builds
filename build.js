@@ -41,6 +41,7 @@ function buildDarwin(arch) {
     cwd: 'FFmpeg',
   }
   execSync([
+    'sh',
     './configure',
     '--prefix=../output',
     '--enable-cross-compile',
