@@ -53,11 +53,11 @@ function buildDarwin(arch) {
 const [,, platform, arch] = process.argv;
 switch (platform) {
   case 'win32': {
-    buildWindows(process.argv[arch])
+    buildWindows(arch)
     break
   }
   case 'darwin': {
-    buildDarwin(process.argv[arch])
+    buildDarwin(arch)
     break
   }
 }
