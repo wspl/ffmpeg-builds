@@ -50,7 +50,9 @@ function buildDarwin(arch) {
     '--nm=llvm-nm',
     '--ar=llvm-ar',
   ], options)
+  console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
   execSync(`make -j16`, options)
+  console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
   execSync(`make install`, options)
 }
 
