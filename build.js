@@ -53,10 +53,10 @@ function buildDarwin(arch) {
     `--extra-ldflags="-target ${arch}"`,
     `--extra-cflags="-target ${arch}"`
   ], options)
-  console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
-  // execSync(`make -j16`, options)
-  console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
-  // execSync(`make install`, options)
+  // console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
+  execSync(`make -j16`, options)
+  // console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
+  execSync(`make install`, options)
 }
 
 const [,, platform, arch] = process.argv;
