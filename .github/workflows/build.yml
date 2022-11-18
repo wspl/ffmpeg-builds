@@ -1,7 +1,7 @@
 name: Build
 on: [push]
 jobs:
-  windows:
+  win32-x86:
     runs-on: windows-2022
     steps:
       - name: Checkout Project
@@ -22,12 +22,38 @@ jobs:
             yasm
             nasm
       - name: build
-        run: node ./build.js windows
+        run: node ./build.js win32 x86
       - uses: actions/upload-artifact@v3
         with:
-          name: windows
+          name: win32_x86
           path: output
-  darwin:
+  win32-x64:
+    runs-on: windows-2022
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
+      - name: Checkout FFmpeg
+        uses: actions/checkout@v3
+        with:
+          repository: FFmpeg/FFmpeg
+          path: FFmpeg
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            coreutils
+            gawk
+            make
+            diffutils
+            yasm
+            nasm
+      - name: build
+        run: node ./build.js win32 x86_64
+      - uses: actions/upload-artifact@v3
+        with:
+          name: win32_x64
+          path: output
+  darwin-x64:
     runs-on: macos-12
     steps:
       - name: Checkout Project
@@ -40,9 +66,27 @@ jobs:
       - name: brew install
         run: brew install automake fdk-aac git lame libass libtool libvorbis libvpx opus sdl shtool texi2html theora wget x264 x265 xvid nasm
       - name: build
-        run: node ./build.js darwin
+        run: node ./build.js darwin x86_64
       - uses: actions/upload-artifact@v3
         with:
-          name: darwin
+          name: darwin_x64
+          path: output
+  darwin-arm64:
+    runs-on: macos-12
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
+      - name: Checkout FFmpeg
+        uses: actions/checkout@v3
+        with:
+          repository: FFmpeg/FFmpeg
+          path: FFmpeg
+      - name: brew install
+        run: brew install automake fdk-aac git lame libass libtool libvorbis libvpx opus sdl shtool texi2html theora wget x264 x265 xvid nasm
+      - name: build
+        run: node ./build.js darwin aarch64
+      - uses: actions/upload-artifact@v3
+        with:
+          name: darwin_arm64
           path: output
 

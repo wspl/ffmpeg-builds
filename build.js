@@ -2,7 +2,7 @@ const { match } = require('assert')
 const { execSync, spawnSync } = require('child_process')
 const fs = require('fs')
 
-function buildWindows() {
+function buildWindows(arch) {
   // setup msys env
   const msysDir = execSync('msys2 -c "cygpath -m /"').toString().trim()
   const msysBinDir = `${msysDir.replaceAll('/', '\\')}\\usr\\bin`
@@ -28,32 +28,36 @@ function buildWindows() {
   spawnSync('sh', [
     './configure',
     '--toolchain=msvc',
-    '--prefix=../output'
+    '--prefix=../output',
+    `--arch=${arch}`
   ], options)
   execSync(`make -j16`, options)
   execSync(`make install`, options)
 }
 
-function buildDarwin() {
+function buildDarwin(arch) {
   const options = {
     stdio: 'inherit',
     cwd: 'FFmpeg'
   }
   spawnSync('sh', [
     './configure',
-    '--prefix=../output'
+    '--prefix=../output',
+    '--enable-cross-compile',
+    `--arch=${arch}`
   ], options)
   execSync(`make -j16`, options)
   execSync(`make install`, options)
 }
 
-switch (process.argv[2]) {
-  case 'windows': {
-    buildWindows()
+const [,, platform, arch] = process.argv;
+switch (platform) {
+  case 'win32': {
+    buildWindows(process.argv[arch])
     break
   }
   case 'darwin': {
-    buildDarwin()
+    buildDarwin(process.argv[arch])
     break
   }
 }
