@@ -25,19 +25,23 @@ function buildWindows(arch) {
     }
   }
 
-  spawnSync('sh', [
-    './configure',
-    // '--toolchain=msvc',
-    '--prefix=../output',
-    // `--arch=${arch}`,
-    '--enable-cross-compile',
-    `--arch=${arch}`,
-    '--cc=clang',
-    `--extra-cflags="--target=${arch}-pc-windows-msvc"`,
-    `--extra-ldflags="--target=${arch}-pc-windows-msvc"`,
-  ], options)
-  execSync(`make -j16`, options)
-  execSync(`make install`, options)
+  try {
+    spawnSync('sh', [
+      './configure',
+      // '--toolchain=msvc',
+      '--prefix=../output',
+      // `--arch=${arch}`,
+      '--enable-cross-compile',
+      `--arch=${arch}`,
+      '--cc=clang',
+      `--extra-cflags="--target=${arch}-pc-windows-msvc"`,
+      `--extra-ldflags="--target=${arch}-pc-windows-msvc"`,
+    ], options)
+    execSync(`make -j16`, options)
+    execSync(`make install`, options)
+  } catch {
+    console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
+  }
 }
 
 function buildDarwin(arch) {
