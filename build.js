@@ -25,24 +25,15 @@ function buildWindows(arch) {
     }
   }
 
-  try {
-    const llvmArch = arch === 'x86' ? 'i686' : arch
-    spawnSync('sh', [
-      './configure',
-      // '--toolchain=msvc',
-      '--prefix=../output',
-      // `--arch=${arch}`,
-      '--enable-cross-compile',
-      `--arch=${arch}`,
-      '--cc=clang',
-      `--extra-cflags="--target=${llvmArch}-pc-windows-msvc"`,
-      `--extra-ldflags="--target=${llvmArch}-pc-windows-msvc -NODEFAULTLIB:libcmt"`,
-    ], options)
-    execSync(`make -j16`, options)
-    execSync(`make install`, options)
-  } catch {
-    console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
-  }
+  spawnSync('sh', [
+    './configure',
+    '--toolchain=msvc',
+    '--prefix=../output',
+    `--arch=${arch}`,
+    `--target-os=${arch === 'x86' ? 'win32' : 'win64'}`
+  ], options)
+  execSync(`make -j16`, options)
+  execSync(`make install`, options)
 }
 
 function buildDarwin(arch) {
