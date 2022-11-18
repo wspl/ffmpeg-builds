@@ -8,7 +8,7 @@ function buildWindows(arch) {
   const msysBinDir = `${msysDir.replaceAll('/', '\\')}\\usr\\bin`
 
   // setup vs env
-  fs.writeFileSync('temp.bat', `call "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsall.bat" amd64\nset`)
+  fs.writeFileSync('temp.bat', `call "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsall.bat amd64" \nset`)
   const sets = spawnSync('temp.bat', {
     shell: true
   }).stdout.toString()
