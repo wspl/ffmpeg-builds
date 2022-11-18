@@ -39,22 +39,24 @@ function buildDarwin(arch) {
   const options = {
     stdio: 'inherit',
     cwd: 'FFmpeg',
-    // env: {
-    //   ...process.env
-    // }
+    env: {
+      ...process.env,
+      ARCH: arch
+    }
   }
   spawnSync('sh', [
     './configure',
     '--prefix=../output',
+    '--enable-cross-compile',
     `--arch=${arch}`,
-    // '--cc=clang',
-    `--extra-ldflags="-arch ${arch}"`,
-    `--extra-cflags="-arch ${arch}"`
+    '--cc=clang',
+    `--extra-ldflags="-target ${arch}"`,
+    `--extra-cflags="-target ${arch}"`
   ], options)
   console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
-  execSync(`make -j16`, options)
+  // execSync(`make -j16`, options)
   console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
-  execSync(`make install`, options)
+  // execSync(`make install`, options)
 }
 
 const [,, platform, arch] = process.argv;
