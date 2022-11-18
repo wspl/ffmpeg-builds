@@ -1,7 +1,7 @@
 name: Build
 on: [push]
 jobs:
-  win32-x86:
+  win32-i686:
     runs-on: windows-2022
     steps:
       - name: Checkout Project
@@ -22,12 +22,12 @@ jobs:
             yasm
             nasm
       - name: build
-        run: node ./build.js win32 x86
+        run: node ./build.js win32 i686
       - uses: actions/upload-artifact@v3
         with:
-          name: win32_x86
+          name: win32-x86
           path: output
-  win32-x64:
+  win32-x86_64:
     runs-on: windows-2022
     steps:
       - name: Checkout Project
@@ -51,9 +51,9 @@ jobs:
         run: node ./build.js win32 x86_64
       - uses: actions/upload-artifact@v3
         with:
-          name: win32_x64
+          name: win32-x86_64
           path: output
-  darwin-x64:
+  darwin-x86_64:
     runs-on: macos-12
     steps:
       - name: Checkout Project
@@ -69,9 +69,9 @@ jobs:
         run: node ./build.js darwin x86_64
       - uses: actions/upload-artifact@v3
         with:
-          name: darwin_x64
+          name: darwin-x86_64
           path: output
-  darwin-arm64:
+  darwin-aarch64:
     runs-on: macos-12
     steps:
       - name: Checkout Project
@@ -87,6 +87,6 @@ jobs:
         run: node ./build.js darwin aarch64
       - uses: actions/upload-artifact@v3
         with:
-          name: darwin_arm64
+          name: darwin-aarch64
           path: output
 

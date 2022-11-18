@@ -27,9 +27,14 @@ function buildWindows(arch) {
 
   spawnSync('sh', [
     './configure',
-    '--toolchain=msvc',
+    // '--toolchain=msvc',
     '--prefix=../output',
-    `--arch=${arch}`
+    // `--arch=${arch}`,
+    '--enable-cross-compile',
+    `--arch=${arch}`,
+    '--cc=clang',
+    `--extra-cflags="--target=${arch}-pc-windows-msvc"`,
+    `--extra-ldflags="--target=${arch}-pc-windows-msvc"`,
   ], options)
   execSync(`make -j16`, options)
   execSync(`make install`, options)
