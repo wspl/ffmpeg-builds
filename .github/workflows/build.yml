@@ -84,7 +84,7 @@ jobs:
       - name: brew install
         run: brew install automake fdk-aac git lame libass libtool libvorbis libvpx opus sdl shtool texi2html theora wget x264 x265 xvid yasm
       - name: build
-        run: node ./build.js darwin arm64
+        run: node ./build.js darwin aarch64
       - uses: actions/upload-artifact@v3
         with:
           name: darwin_arm64
