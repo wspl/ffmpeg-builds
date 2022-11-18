@@ -28,5 +28,5 @@ spawnSync('sh', [
   '--toolchain=msvc',
   '--prefix=../output'
 ], options)
-execSync(`${msysBinDir}\\make.exe -j 64`, options)
+execSync(`${msysBinDir}\\make.exe -j16`, options)
 execSync(`${msysBinDir}\\make.exe install`, options)
