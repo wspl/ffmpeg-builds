@@ -50,6 +50,7 @@ function buildDarwin(arch) {
     `--arch=${arch}`,
     '--cc=clang',
     `--extra-ldflags="-target ${arch}-apple-darwin -arch ${arch}"`,
+    `--extra-asflags="-target ${arch}-apple-darwin -arch ${arch}"`,
     `--extra-cflags="-target ${arch}-apple-darwin -arch ${arch}"`
   ], options)
   // console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
