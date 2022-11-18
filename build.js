@@ -46,11 +46,11 @@ function buildDarwin(arch) {
     '--enable-cross-compile',
     `--arch=${arch}`,
     '--cc=clang',
-    '--as=llvm-as',
-    '--ld=clang',
+    // '--as=llvm-as',
+    // '--ld=clang',
     `--extra-cflags='--target=${arch}-apple-darwin -march=${arch}'`,
     `--extra-ldflags='--target=${arch}-apple-darwin -march=${arch}'`,
-    `--extra-asflags='--target=${arch}-apple-darwin -march=${arch}'`
+    // `--extra-asflags='--target=${arch}-apple-darwin -march=${arch}'`
   ], options)
   console.log(fs.readFileSync('FFmpeg/ffbuild/config.log', 'utf-8'))
   execSync(`make -j16`, options)
