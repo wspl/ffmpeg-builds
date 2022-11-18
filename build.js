@@ -44,7 +44,11 @@ function buildDarwin(arch) {
     './configure',
     '--prefix=../output',
     '--enable-cross-compile',
-    `--arch=${arch}`
+    `--arch=${arch}`,
+    '--cc=clang',
+    '--ld=ld64.lld',
+    '--nm=llvm-nm',
+    '--ar=llvm-ar',
   ], options)
   execSync(`make -j16`, options)
   execSync(`make install`, options)
