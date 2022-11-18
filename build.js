@@ -30,8 +30,8 @@ function buildWindows() {
     '--toolchain=msvc',
     '--prefix=../output'
   ], options)
-  execSync(`${msysBinDir}\\make.exe -j16`, options)
-  execSync(`${msysBinDir}\\make.exe install`, options)
+  execSync(`make -j16`, options)
+  execSync(`make install`, options)
 }
 
 function buildDarwin() {
@@ -43,8 +43,8 @@ function buildDarwin() {
     './configure',
     '--prefix=../output'
   ], options)
-  execSync(`${msysBinDir}\\make.exe -j16`, options)
-  execSync(`${msysBinDir}\\make.exe install`, options)
+  execSync(`make -j16`, options)
+  execSync(`make install`, options)
 }
 
 switch (process.argv[2]) {
