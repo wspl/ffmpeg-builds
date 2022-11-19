@@ -34,7 +34,9 @@ function buildWindows(arch) {
       '--toolchain=msvc',
       '--prefix=../output',
       `--arch=${arch}`,
-      `--target-os=${arch === 'x86' ? 'win32' : 'win64'}`
+      `--target-os=${arch === 'x86' ? 'win32' : 'win64'}`,
+      '--disable-doc',
+      '--enable-debug'
     ], options)
     execSync(`make -j16`, options)
     execSync(`make install`, options)
@@ -58,6 +60,8 @@ function buildDarwin(arch) {
       '--cc=clang',
       `--extra-cflags="--target=${arch}-apple-darwin"`,
       `--extra-ldflags="--target=${arch}-apple-darwin"`,
+      '--disable-doc',
+      '--enable-debug'
     ].join(' '), options)
     execSync(`make -j16`, options)
     execSync(`make install`, options)
