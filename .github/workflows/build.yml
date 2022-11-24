@@ -54,7 +54,7 @@ jobs:
           name: win32-x86_64
           path: output
   darwin-x86_64:
-    runs-on: macos-12
+    runs-on: macos-11
     steps:
       - name: Checkout Project
         uses: actions/checkout@v3
