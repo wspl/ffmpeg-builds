@@ -58,8 +58,8 @@ function buildDarwin(arch) {
       '--enable-cross-compile',
       `--arch=${arch}`,
       '--cc=clang',
-      `--extra-cflags="--target=${arch}-apple-darwin -mmacosx-version-min=10.12"`,
-      `--extra-ldflags="--target=${arch}-apple-darwin -mmacosx-version-min=10.12"`,
+      `--extra-cflags="--target=${arch}-apple-darwin -mmacosx-version-min=10.12 -fno-objc-msgsend-selector-stubs"`,
+      `--extra-ldflags="--target=${arch}-apple-darwin -mmacosx-version-min=10.12 -fno-objc-msgsend-selector-stubs"`,
       '--disable-doc',
       '--enable-debug'
     ].join(' '), options)
