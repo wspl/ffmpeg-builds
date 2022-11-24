@@ -62,6 +62,8 @@ function buildDarwin(arch) {
       `--extra-ldflags="--target=${arch}-apple-darwin"`,
       '--disable-doc',
       '--enable-debug'
+      '--extra-cflags=-mmacosx-version-min=10.12',
+      '--extra-ldflags=-mmacosx-version-min=10.12'
     ].join(' '), options)
     execSync(`make -j16`, options)
     execSync(`make install`, options)
