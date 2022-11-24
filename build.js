@@ -58,12 +58,10 @@ function buildDarwin(arch) {
       '--enable-cross-compile',
       `--arch=${arch}`,
       '--cc=clang',
-      `--extra-cflags="--target=${arch}-apple-darwin"`,
-      `--extra-ldflags="--target=${arch}-apple-darwin"`,
+      `--extra-cflags="--target=${arch}-apple-darwin -mmacosx-version-min=10.12"`,
+      `--extra-ldflags="--target=${arch}-apple-darwin -mmacosx-version-min=10.12"`,
       '--disable-doc',
       '--enable-debug'
-      '--extra-cflags=-mmacosx-version-min=10.12',
-      '--extra-ldflags=-mmacosx-version-min=10.12'
     ].join(' '), options)
     execSync(`make -j16`, options)
     execSync(`make install`, options)
